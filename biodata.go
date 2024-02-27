@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+	"strconv"
+)
 
 type Mahasiswa struct {
 	ID        int
@@ -23,16 +27,22 @@ func CheckID(id int) {
 			fmt.Printf("Nama: %s\n", v.Nama)
 			fmt.Printf("Alamat: %s\n", v.Alamat)
 			fmt.Printf("Pekerjaan: %s\n", v.Pekerjaan)
+			fmt.Printf("Alasan: %s\n", v.Alasan)
 			return
 		}
 	}
 
-	fmt.Println(id)
+	fmt.Println("ID SALAH !")
 }
 
 func main() {
-	var exm int
-	fmt.Printf("Masukkann Input Absen : ")
-	fmt.Scan(&exm)
-	CheckID(exm)
+	exm := os.Args[1]
+
+	res, err := strconv.Atoi(exm)
+	if err != nil {
+		fmt.Println("Invalid Input")
+		return
+	}
+
+	CheckID(res)
 }
