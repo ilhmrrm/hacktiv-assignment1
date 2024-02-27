@@ -1,54 +1,38 @@
 package main
 
-import (
-	"fmt"
-)
-
-type Teman struct {
-	Description []Mahasiswa
-}
+import "fmt"
 
 type Mahasiswa struct {
+	ID        int
 	Nama      string
 	Alamat    string
 	Pekerjaan string
 	Alasan    string
 }
 
-func Test() Teman {
-
-	mhs := Mahasiswa{
-		Nama:      "Ilham",
-		Alamat:    "Jakarta Timur",
-		Pekerjaan: "Freelance",
-		Alasan:    "Ingin memperdalam ilmu Backend Terutama golang",
+func CheckID(id int) {
+	var Res = []Mahasiswa{
+		{ID: 1, Nama: "Ilham Ramadhan", Alamat: "Jakarta", Pekerjaan: "Freelance", Alasan: "Ingin memperdalam ilmu Backend Terutama golang"},
+		{ID: 2, Nama: "Dimas", Alamat: "Bekasi", Pekerjaan: "UI/UX", Alasan: "Ingin mengikuti pelatihan terkait Backend"},
+		{ID: 3, Nama: "Luthfi", Alamat: "Bogor", Pekerjaan: "Fresh Graduate", Alasan: "Ingin menjadi seorang QA Engineer"},
 	}
 
-	mhs2 := Mahasiswa{
-		Nama:      "Rahmat",
-		Alamat:    "Bekasi",
-		Pekerjaan: "Mahasiswa",
-		Alasan:    "Ingin mengasah ilmu Backend dan meraih sertifikat internasional",
+	for _, v := range Res {
+		if v.ID == id {
+			fmt.Printf("Absen %d\n", v.ID)
+			fmt.Printf("Nama: %s\n", v.Nama)
+			fmt.Printf("Alamat: %s\n", v.Alamat)
+			fmt.Printf("Pekerjaan: %s\n", v.Pekerjaan)
+			return
+		}
 	}
 
-	Result := Teman{
-		Description: []Mahasiswa{
-			mhs,
-			mhs2,
-		},
-	}
-
-	return Result
+	fmt.Println(id)
 }
 
 func main() {
-	Hasil := Test()
-
-	for i, mhs := range Hasil.Description {
-		fmt.Printf("Mahasiswa %d:\n", i+1)
-		fmt.Printf("Nama: %s\n", mhs.Nama)
-		fmt.Printf("Alamat: %s\n", mhs.Alamat)
-		fmt.Printf("Pekerjaan: %s\n", mhs.Pekerjaan)
-		fmt.Printf("Alasan: %s\n\n", mhs.Alasan)
-	}
+	var exm int
+	fmt.Printf("Masukkann Input Absen : ")
+	fmt.Scan(&exm)
+	CheckID(exm)
 }
